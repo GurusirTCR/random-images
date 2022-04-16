@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Show</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="input_box">
+         
+                <label for="">width (px)</label>
+            <input type="number" name="width" id="width" placeholder="100">
+            <label for="">Number of Images</label>
+            <input type="number"  name="width" id="numberof" placeholder="10">
+            <button id="btn" onclick="getVal()" type="submit">Apply</button>
+         
+        </div>
+        <div class="show_images">
+            
+        </div>
+    </div>
+    <div id="user">
+       
+    </div>
+</body>
+<script>
+ 
+    function getVal() {
+        const val = document.getElementById('numberof').value;
+        console.log(val);
+      
+    }
+
+    $.ajax({
+        url: 'https://randomuser.me/api/?results=10&seed=abc',
+        dataType: 'json',
+        success: function(data) {
+          //console.log(data.results[0]);
+          for(var i=0;i<10;i++)
+          { 
+              var data1 = data.results[i];
+              var img =  data1.picture.medium;
+              var name =  data1.name.first+' '+data1.name.last;
+              
+              document.getElementById('user').innerHTML=` 
+          <h3>User</h3>
+          <hr>
+              <img src="${img}" alt="">
+          <span id="first" >${name}</span>
+          <hr> 
+          <button type="submit">close</button>`;
+        }
+    }
+      });
+</script>
+
+</html>
