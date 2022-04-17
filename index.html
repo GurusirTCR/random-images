@@ -7,58 +7,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Show</title>
     <link rel="stylesheet" href="style.css">
-    <script src="jquery.min.js"></script>
+
 </head>
 
 <body>
     <div class="container">
 
         <div class="input_box">
-         
-                <label for="">width (px)</label>
-            <input type="number" name="width" id="width" placeholder="100">
-            <label for="">Number of Images</label>
-            <input type="number"  name="width" id="numberof" placeholder="10">
-            <button id="btn" onclick="getVal()" type="submit">Apply</button>
-         
-        </div>
-        <div class="show_images">
-            
-        </div>
-    </div>
-    <div id="user">
-       
-    </div>
-</body>
-<script>
- 
-    function getVal() {
-        const val = document.getElementById('numberof').value;
-        console.log(val);
-      
-    }
 
-    $.ajax({
-        url: 'https://randomuser.me/api/?results=10&seed=abc',
-        dataType: 'json',
-        success: function(data) {
-          //console.log(data.results[0]);
-          for(var i=0;i<10;i++)
-          { 
-              var data1 = data.results[i];
-              var img =  data1.picture.medium;
-              var name =  data1.name.first+' '+data1.name.last;
-              
-              document.getElementById('user').innerHTML=` 
-          <h3>User</h3>
-          <hr>
-              <img src="${img}" alt="">
-          <span id="first" >${name}</span>
-          <hr> 
-          <button type="submit">close</button>`;
-        }
-    }
-      });
-</script>
+            <label for="">width (px)</label>
+            <label style="margin-left:80px;" for="">Number of Images</label><br>
+            <input  style="margin-top:10px; margin-bottom: 10px;" type="number" name="width" class="width" id="width" value="100"> 
+            <input  style="margin-top:10px; margin-bottom: 10px;" type="number" name="width" id="photos" placeholder="10" value="10">
+            <button style="margin-top:10px; margin-bottom: 10px;" id="btn" type="submit" class="apply">Apply</button>
+
+        </div>
+        <div class="show_images" id="image-show">
+
+        </div>
+    </div>
+
+<!-- ============================== -->
+<!--   -->
+<button id="trigger">Login</button>
+    <div class="modal_wrapper">
+        <div class="modal_container">
+            <h2>Users</h2>
+            <hr>
+            <div class="user-img">
+                <div class="row-data">
+                    <img class="user-img1" src="martygo.bmp" alt="">
+                    <h4 class="name">Name</h4>
+                </div>
+              <div class="ow-data">
+                <img class="user-img1" src="martygo.bmp" alt="">
+                <h4 class="name">Name</h4>
+              </div>
+            </div>
+            <hr>
+            <div class="action">
+                <button class="btn-purple close">Close</button>
+            </div>
+        </div>
+    </div>
+
+<!-- =============================== -->
+    <footer>
+        <script src="jquery.min.js"></script>
+        <script>
+                //add custome js
+            </script>
+            <script src="index.js"></script>
+    </footer>
+</body>
 
 </html>
