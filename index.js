@@ -36,7 +36,6 @@ console.log(oldW,oldP);
                 $("#image-show").append(
                   `<img class="user-img" src="${img}" alt="">`
                 );
-                console.log("Width is LOOOO 111");
               }
               else if(newWidth > photos * 50){
                   var data1 = data.results[i];
@@ -44,7 +43,6 @@ console.log(oldW,oldP);
                   $("#image-show").append(
                       `<img class="user-img" src="${img}" alt="">`
                     );
-                    console.log("###3333");
               } 
               else if (photos * 50 != newWidth || newWidth%50==0) {
                 for (var i = 0; i < newimg1 - 1; i++) {
@@ -70,7 +68,6 @@ console.log(oldW,oldP);
                     Math.round(photos -newimg1+1)
                   }</button>`);
                 
-                  console.log("Width is LOOOO 2222");
                 }
               }
             }
