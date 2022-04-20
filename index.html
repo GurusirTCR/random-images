@@ -21,8 +21,8 @@
             </div>
             <div>                
                 <input  style="margin-top:10px; margin-bottom: 10px;" type="number" name="width" class="width" id="width" value="100"> 
-                <input  style="margin-top:10px; margin-bottom: 10px;" type="number" name="photos" id="photos" placeholder="10" value="10">
-                <button style="margin-top:10px; margin-bottom: 10px;" id="btn" type="submit" class="apply">Apply</button>
+                <input  style="margin-top:10px; margin-bottom: 10px;" type="number" name="photos" class="photos" id="photos" placeholder="10" value="10">
+                <button style="margin-top:10px; margin-bottom: 10px;"  id="btn" type="submit" class="apply">Apply</button>
 
             </div>
         </div>
@@ -33,21 +33,17 @@
 
 <!-- ============================== -->
 <!--   -->
+    <button id="trigger">Click</button>
 
     <div class="modal_wrapper">
         <div class="modal_container">
             <h2>Users</h2>
             <hr>
-            <div class="user-img">
-                <div class="row-data">
-                    <img class="user-img1" src="" alt="">
-                    <h4 class="name">Name</h4>
+                <div id="row-data">
+                  
+                    
                 </div>
-              <div class="ow-data">
-                <img class="user-img1" src="" alt="">
-                <h4 class="name">Name</h4>
-              </div>
-            </div>
+
             <hr>
             <div class="action">
                 <button class="btn-purple close">Close</button>
