@@ -27,6 +27,25 @@ $(document).ready(function () {
           var newimg1 = newWidth / 50;
           console.log(newimg1);
           $(".show_images").html("");
+
+          var user_images = new Array();
+          for(var k=0;k< photos;k++)
+          { 
+            var data1 = data.results[k];
+            user_images.push(data1);
+            $("#row-data").append(
+              `
+              <div class="user-img-div">
+              <img class="user-img" src="${user_images[k].picture.medium}">
+              </div>
+              `
+            );
+            $("#row-data").append(` <div class="name">
+              <h4>${user_images[k].name.first}</h4>
+              </div>`);
+
+          }
+//====================================
           for (var i = 0; i < photos; i++) {
             var data1 = data.results[i];
             var img = data1.picture.medium;
@@ -34,6 +53,7 @@ $(document).ready(function () {
               $("#image-show").append(
                 `<img class="user-img" src="${img}" alt="">`
               );
+              
             } else {
               const total = photos - newimg1;
               if (newWidth % 50 != 0) {
@@ -47,7 +67,7 @@ $(document).ready(function () {
                 }
 
                 $("#image-show").append(
-                  `<button class="user-img"  id="trigger">+${parseInt(total + 2)}</button>`
+                  `<button class="user-img"  id="trigger" >+${parseInt(total + 2)}</button>`
                 );
 
               } else {
@@ -57,10 +77,10 @@ $(document).ready(function () {
                   `<img class="user-img" src="${img}" alt="">`
                 );
                 $("#image-show").append(
-                  `<button class="user-img"  id="trigger">+${parseInt(total + 1)}</button>`
+                  `<button class="user-img"  id="trigger" >+${parseInt(total + 1)}</button>`
                   );
+                  break;
                 }
-                break;
               }
               
             }
