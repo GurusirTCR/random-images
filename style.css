@@ -20,6 +20,7 @@
     width:48px;
     padding: 1px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .img-box{
     display:inline-block;
@@ -41,15 +42,21 @@
    opacity: 0;
    pointer-events: none;
    transition: all .3s ease-in-out;
-
+    
 }
 .modal_container{
     background:#fff;
     width: 560px;
     max-width: 90%;
-
     border-radius: 4px;
 }
+#row-data{
+    height: 60vh;
+    padding: 10px;
+    overflow-y: scroll;
+    /* background-color: red; */
+}
+
 .btn-purple{
     background: blueviolet;
     padding:10px 40px;
@@ -74,10 +81,14 @@ h2{
     width:100px;
     border-radius: 50%;
 }
+.user-img-div{
+    padding: 10px;
+
+}
 .name{
     display: flex;
     margin-left: 150px;
-    margin-top: -30px;
+    margin-top: -40px;
 }
 .action{
     display:flex;
