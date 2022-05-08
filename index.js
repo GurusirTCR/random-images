@@ -1,94 +1,94 @@
-window.onload = function () {
+$(window).on("load", function () {
+  getData();
+});
+
+$(function () {
+  $(".apply").click(getData);
+});
+
+function getData() {
+  $(".show_images").html("");
+  $("#row-data").html("");
   var newWidth = $(".width").val();
+
   $(".show_images").width(newWidth);
-};
-$(document).ready(function () {
-  $(".apply").click(function () {
-    // var demo = $("#image-show").width();
-    // +"px";
-    var newWidth = $(".width").val();
-    $(".show_images").width(newWidth);
-    demo = $("#image-show").width();
 
-    +"px";
-    var photos = $("#photos").val();
+  var photos = $("#photos").val();
 
-    const screenWidth = screen.width - 20;
+  const screenWidth = screen.width - 20;
 
-    if (newWidth <= 50 || newWidth >= screenWidth || photos < 1) {
-      alert("Not Valid input");
-      location.reload();
-    } else {
-      $.ajax({
-        url: "https://randomuser.me/api/?results=" + photos,
-        dataType: "json",
-        success: function (data) {
-          console.log(data.results[0]);
-          var newimg1 = newWidth / 50;
-          console.log(newimg1);
-          $(".show_images").html("");
+  if (
+    newWidth <= 50 ||
+    (newWidth >= screenWidth && photos <= 1) ||
+    photos >= 30
+  ) {
+    alert("Not Valid input");
+    location.reload();
+  }
 
-          var user_images = new Array();
-          for(var k=0;k< photos;k++)
-          { 
-            var data1 = data.results[k];
-            user_images.push(data1);
-            $("#row-data").append(
-              `
-              <div class="user-img-div">
-              <img class="user-img" src="${user_images[k].picture.medium}">
-              </div>
-              `
-            );
-            $("#row-data").append(` <div class="name">
-              <h4>${user_images[k].name.first}</h4>
-              </div>`);
+  const ImageAPI = "https://randomuser.me/api/?results=" + photos;
 
-          }
-//====================================
-          for (var i = 0; i < photos; i++) {
-            var data1 = data.results[i];
-            var img = data1.picture.medium;
-            if (photos == newimg1) {
-              $("#image-show").append(
-                `<img class="user-img" src="${img}" alt="">`
-              );
-              
-            } else {
-              const total = photos - newimg1;
-              if (newWidth % 50 != 0) {
-                for (var i = 0; i < newimg1 - 2; i++) {
-                  var data1 = data.results[i];
-                  var img = data1.picture.medium;
-                  $("#image-show").append(
-                    `<img class="user-img" src="${img}" alt="">`
-                  );
-                
-                }
+  var imageInBox = parseInt(newWidth / 50);
 
-                $("#image-show").append(
-                  `<button class="user-img"  id="trigger" >+${parseInt(total + 2)}</button>`
-                );
+  var flag = 1;
+  console.log(imageInBox);
 
-              } else {
+  $.getJSON(ImageAPI).done(function (data) {
+    for (var i = 0; i < photos; i++) {
+      // console.log(data.results[i].picture.medium);
 
-                
-                $("#image-show").append(
-                  `<img class="user-img" src="${img}" alt="">`
-                );
-                $("#image-show").append(
-                  `<button class="user-img"  id="trigger" >+${parseInt(total + 1)}</button>`
-                  );
-                  break;
-                }
-              }
-              
-            }
-          }
-      });
+      var resultData = data.results[i];
+      var img = resultData.picture.medium;
+
+      if (photos == imageInBox ) {
+        $("#image-show").append(`<img class="user-img" src="${img}" alt="">`);
+        flag++;
+      }
+    
+      if (photos > imageInBox && newWidth % 50 != 0) {
+        var total = photos - imageInBox;
+        for (var i = 0; i < imageInBox - 1; i++) {
+          var data1 = data.results[i];
+          var img = data1.picture.medium;
+         
+          $("#image-show").append(`<img class="user-img" src="${img}" alt="">`);
+          
+          flag++;
+        }
+        $("#image-show").append(
+          `<button type="button" class="user-img" onclick="demo()" id="trigger" >+${parseInt(
+            total + 1
+          )}</button>`
+        );
+          break;
+        
+      }
+    
+    }
+    console.log(flag);
+    var user_images = new Array();
+    for (var k = 0; k < photos; k++) {
+      var data1 = data.results[k];
+      user_images.push(data1);
+    }
+
+    for (var k = flag - 1; k < photos; k++) {
+      $("#row-data").append(
+        `
+        <div class="user-img-div">
+        <img class="user-img" src="${user_images[k].picture.medium}">
+        </div>
+        `
+      );
+      $("#row-data").append(` <div class="name">
+        <h4>${user_images[k].name.first}</h4>
+        </div>`);
     }
   });
-});
+}
+
+function demo() {
+  console.log("Demo Function");
 
   const trigger = document.querySelector("#trigger");
   const modalWrapper = document.querySelector(".modal_wrapper");
@@ -101,4 +101,4 @@ $(document).ready(function () {
   closeBtn.addEventListener("click", function () {
     modalWrapper.classList.remove("active");
   });
-
+}
